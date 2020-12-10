@@ -1,71 +1,62 @@
   | Change Version | API Version | Change nots | Change Date | Author |
   | - | - | - | - | - |
-  | 3.0 | v3 | AutoCoding Update | 2020-07-29 | Davy |
+  | 1.0 | v1 | Taskbot API V1 | 2020-12-10 | Light |
 
 
 # Summary
-  - Chatbot
+  - Taskbot
     - [session](#session)  
-  - AgentAssist
-    - [agent assist suggestion](#agent-assist-suggestion)
 
 
 # Session
-  - `POST /api/v3/bot/chatbots/{chatbotId}/sessions` - [Create session](#create-session)
-  - `POST /api/v3/bot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitIVRKey` - [Submit IVRKey](#Submit-IVRKey)
-  - `POST /api/v3/bot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
+  - `POST /api/v1/bot/taskbot/{taskbotId}/createSession` - [Create session](#create-session)
+  - `POST /api/v3/bot/taskbot/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
+  - `POST /api/v3/bot/taskbot/{sessionId}:submitInformation` - [Submit Information](#submit-information)
+  - `POST /api/v3/bot/taskbot/{sessionId}:submitAuthentication` -  [Submit Authentication](#submit-authentication)
+  - `POST /api/v3/bot/taskbot/{sessionId}:submitLocation` - [Submit Location](#submit-location)
+  - `POST /api/v3/bot/taskbot/{sessionId}:endSession` - [End Session](#end-session)
 
 ## Related Object Json Format
 
-### ChatbotSession Object
-  ChatbotSession Object is represented as simple flat JSON objects with the following keys:  
+### TaskbotSession Object
+  TaskbotSession Object is represented as simple flat JSON objects with the following keys:  
 
   |Name| Type | Default | Description     | 
   | - | - | :-: | - | 
-  | `id` | Guid  | | sessionId |
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `message` |  [ChatbotMessage](#ChatbotMessage-Object) Object |  |  |
-  | `context` | [ChatbotSessionContext](#ChatbotSessionContext-Object) Object  |   |  |
+  | `sessionId` | Guid  | | sessionId |
+  | `message` |  [TaskbotMessage](#TaskbotMessage-Object) Object |  |  |
+  | `context` | [TaskbotContext](#TaskbotContext-Object) Object  |   |  |
 
-### ChatbotSessionContext Object
-  ChatbotSessionContext Object is represented as simple flat JSON objects with the following keys:  
+### TaskbotContext Object
+  TaskbotContext Object is represented as simple flat JSON objects with the following keys:  
 
   |Name| Type | Default | Description     | 
   | - | - | :-: | - |   
-  | `chatbotId` | Guid  | | chatbotId |
-  | `currentIntentId` | Guid  | |  |
+  | `taskbotId` | Guid  | | taskbotId |
+  | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
-  | `formValues` | [FieldValue](#FieldValue-object)[] |  | an array of [FieldValue](#FieldValue-object) objects |
-  | `isFormSubmitted` | bool  | false |  |
-  | `latestMessage` | [ChatbotMessage](#ChatbotMessage-Object) Object  | |  |
-  | `customData` | Object  |   | Custom data |
+  | `variableValues` | [NameValueCollection](#NameValue-object)[] |  | an array of [NameValue](#NameValue-object) objects |
+  | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object) Object  | |  |
+  | `customData` | Object  |   | Custom data: Visitor Info |
 
-### FieldValue Object
+### NameValueCollection Object
 FieldValue is represented as simple flat json objects with the following keys:
 
 |Name| Type|  Default |  Description     |
 | - | - | :-: |  - | 
-|`name` | string |  | the name of a field in a form. |
-|`value` | string |  | the value of a field. |
+|`name` | string |  | the name of variable. |
+|`value` | string |  | the value of variable. |
 
 
-### ChatbotMessage Object
-  ChatbotMessage Object is represented as simple flat JSON objects with the following keys:  
+### TaskbotMessage Object
+  TaskbotMessage Object is represented as simple flat JSON objects with the following keys:  
 
   |Name| Type| Default | Description     | 
   | - | - | :-: | - | 
   | `id` | Guid  |  | the unique id of the response |
-  | `visitorQuestion` | string  |  | text |
-  | `type` | string  |  | type of the response,including `greetingMessage`、 `highConfidenceAnswer`、`possibleAnswer`、`noAnswer`,`notHelpfulMessage`, `locationRequest`,`formRequest`,`authenticationRequest`,`prompt` |
-  | `content` | object |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer-object); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer-object);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer-object);when type is `greetingMessage`,it represents [GreetingMessage](#GreetingMessage-Object); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object);when type is `locationRequest`, it represents [LocationRequest](#LocationRequest-Object);when type is `formRequest`, it represents [FormRequest](#FormRequest-Object);when type is `prompt`, it represents [Prompt](#Prompt-Object);when type is `notHelpfulMessage`, it represents [NotHelpfulMessage](#NotHelpfulMessage-Object);|
-  | `disableChatInputArea` | bool  | false | Only available when channel is  `Live Chat`. |
-  | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
+  | `type` | string  |  | type of the response,including `sendMessage`,`quickReply`、 `sendImage`、`sendVideo`、`ssoLoginButton`,`collectLocation`, `collectInfo`,`collectVariableData`,`bookMeeting`,`transferChat` |
+  | `content` | object |  | response's content. when type is `sendMessage`, it represents [SendMessage](#SendMessage-object); when type is `quickReply`,it represents [QuickReply](#QuickReply-object);when type is `sendImage`,it represents [SendImage](#SendImage-object);when type is `sendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `ssoLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `collectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `collectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `collectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `bookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `transferChat`, it represents [TransferChat](#TransferChat-Object);|
 
 
 ###  Smart Trigger Action Object
@@ -1296,3 +1287,70 @@ Content-Type:  application/json
   }
 ]
 ```
+reate session](#create-session)
+  - `POST /api/v3/bot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
+  - `POST /api/v3/bot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
+  - `POST /api/v3/bot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
+  - `POST /api/v3/bot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
+  - `POST /api/v3/bot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
+  - `POST /api/v3/bot/sessions/{sessionId}:submitIVRKey` - [Submit IVRKey](#Submit-IVRKey)
+  - `POST /api/v3/bot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
+
+## Related Object Json Format
+
+### ChatbotSession Object
+  ChatbotSession Object is represented as simple flat JSON objects with the following keys:  
+
+  |Name| Type | Default | Description     | 
+  | - | - | :-: | - | 
+  | `id` | Guid  | | sessionId |
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `message` |  [ChatbotMessage](#ChatbotMessage-Object) Object |  |  |
+  | `context` | [ChatbotSessionContext](#ChatbotSessionContext-Object) Object  |   |  |
+
+### ChatbotSessionContext Object
+  ChatbotSessionContext Object is represented as simple flat JSON objects with the following keys:  
+
+  |Name| Type | Default | Description     | 
+  | - | - | :-: | - |   
+  | `chatbotId` | Guid  | | chatbotId |
+  | `currentIntentId` | Guid  | |  |
+  | `authentication` | string  | | authentication data |
+  | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
+  | `formValues` | [FieldValue](#FieldValue-object)[] |  | an array of [FieldValue](#FieldValue-object) objects |
+  | `isFormSubmitted` | bool  | false |  |
+  | `latestMessage` | [ChatbotMessage](#ChatbotMessage-Object) Object  | |  |
+  | `customData` | Object  |   | Custom data |
+
+### FieldValue Object
+FieldValue is represented as simple flat json objects with the following keys:
+
+|Name| Type|  Default |  Description     |
+| - | - | :-: |  - | 
+|`name` | string |  | the name of a field in a form. |
+|`value` | string |  | the value of a field. |
+
+
+### ChatbotMessage Object
+  ChatbotMessage Object is represented as simple flat JSON objects with the following keys:  
+
+  |Name| Type| Default | Description     | 
+  | - | - | :-: | - | 
+  | `id` | Guid  |  | the unique id of the response |
+  | `visitorQuestion` | string  |  | text |
+  | `type` | string  |  | type of the response,including `greetingMessage`、 `highConfidenceAnswer`、`possibleAnswer`、`noAnswer`,`notHelpfulMessage`, `locationRequest`,`formRequest`,`authenticationRequest`,`prompt` |
+  | `content` | object |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer-object); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer-object);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer-object);when type is `greetingMessage`,it represents [GreetingMessage](#GreetingMessage-Object); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object);when type is `locationRequest`, it represents [LocationRequest](#LocationRequest-Object);when type is `formRequest`, it represents [FormRequest](#FormRequest-Object);when type is `prompt`, it represents [Prompt](#Prompt-Object);when type is `notHelpfulMessage`, it represents [NotHelpfulMessage](#NotHelpfulMessage-Object);|
+  | `disableChatInputArea` | bool  | false | Only available when channel is  `Live Chat`. |
+  | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
+
+
+###  Smart Trigger Action Object
+  Smart Trigger Action is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Default | Description |
+  | - | - | :-: | - |
+  | `type` | string |  | the type of the action. enum:[`sendNotification`,`autoMonitor`,`transferChat`,`changeAssignee`,`addToSegment`]|
+  | `isEnabled` | bool | false | if an action is enabled. |  
+  | `agentOfflineMessage` | string | | agent offlineMessage prompt message |
+  | `targetType` | string |  | the trigger action target type. enum: `department`, `agent`, `segment`. |
+  | `selectedDepartments` | Guid[] |  | Only available when 
