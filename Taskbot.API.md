@@ -271,7 +271,7 @@ Response
 ```
 
 
-### Trigger an Session
+### Trigger Session
 `POST /api/v1/bot/taskbot/{sessionId}:triggerSession`
 
 #### Parameters
@@ -337,7 +337,7 @@ Response
 ```
 
 
-### Submit Location
+### End Session
 `POST /api/v1/bot/taskbot/{sessionId}:endSession`
 
 #### Parameters
