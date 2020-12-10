@@ -227,7 +227,7 @@ example:
 ```Json 
   {
     "sessionId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-	"triggerType":"agent"
+	"triggerType":"agent",
 	"triggerBy":"d3f5b968-ad51-42af-b759-64c0afc40b84"
     "context": {   
     }
