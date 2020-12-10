@@ -24,8 +24,8 @@
   |Name| Type | Default | Description     | 
   | - | - | :-: | - | 
   | `sessionId` | Guid  | | sessionId |
-  | `message` |  [TaskbotMessage](#TaskbotMessage-Object) Object |  |  |
-  | `context` | [TaskbotContext](#TaskbotContext-Object) Object  |   |  |
+  | `message` |  [TaskbotMessage](#TaskbotMessage-Object) Object |  | message |
+  | `context` | [TaskbotContext](#TaskbotContext-Object) Object  |   | context |
 
 ### TaskbotContext Object
   TaskbotContext Object is represented as simple flat JSON objects with the following keys:  
@@ -37,8 +37,7 @@
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
   | `variableValues` | [NameValueCollection](#NameValue-object)[] |  | an array of [NameValue](#NameValue-object) objects |
-  | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object) Object  | |  |
-  | `customData` | Object  |   | Custom data: Visitor Info |
+  | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object)   | | record path and save collected info  |
 
 ### NameValueCollection Object
 FieldValue is represented as simple flat json objects with the following keys:
@@ -59,241 +58,150 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `content` | object |  | response's content. when type is `sendMessage`, it represents [SendMessage](#SendMessage-object); when type is `quickReply`,it represents [QuickReply](#QuickReply-object);when type is `sendImage`,it represents [SendImage](#SendImage-object);when type is `sendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `ssoLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `collectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `collectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `collectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `bookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `transferChat`, it represents [TransferChat](#TransferChat-Object);|
 
 
-###  Smart Trigger Action Object
+###  SendMessage Object
   Smart Trigger Action is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Default | Description |
   | - | - | :-: | - |
-  | `type` | string |  | the type of the action. enum:[`sendNotification`,`autoMonitor`,`transferChat`,`changeAssignee`,`addToSegment`]|
-  | `isEnabled` | bool | false | if an action is enabled. |  
-  | `agentOfflineMessage` | string | | agent offlineMessage prompt message |
-  | `targetType` | string |  | the trigger action target type. enum: `department`, `agent`, `segment`. |
-  | `selectedDepartments` | Guid[] |  | Only available when targetType is  `department`.  |
-  | `selectedAgents` | Guid[] |  | Only available when targetType is  `agent`.  |
-  | `segmentId` | Guid  |  | Only available when targetType is  `segment`. |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `buttons` | [MessageButton](#MessageButton-Object)[] |  | message buttons |
+  | `nextActionId` | guid | | next Taskbot Ation Id |
 
 
-### GreetingMessage Object
-  GreetingMessage is represented as simple flat json objects with the following keys:
+### MessageButton Object
+  MessageButton is represented as simple flat json objects with the following keys:
 
   |Name| Type | Default | Description     | 
   | - | - | :-: | - | 
-  |`responses`| [ChatbotResponse](#Chatbot-Response-Object)[] | | an array of [ChatbotResponse](#Chatbot-Response-Object) object. |
+  | `buttonText` | string  | |  String (256).  |
+  | `type` | string  |  | enums:`link`, `webview`|
+  | `url` | string  |  | String (2048).   |
+  | `openIn` | string  |  | enums:`currentWindow`, `newWindow`, `sideWindow`|
+  | `openStyle` | string  |  | enums:`compact`, `tall`|
+  | `order` | int  |  | order  |
 
-### HighConfidenceAnswer Object
+###  QuickReply Object
 
-  HighConfidenceAnswer is represented as simple flat JSON objects with the following keys:  
+   QuickReply is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Default | Description |
+  | - | - | - | - |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `options` | [QuickReplyOption](#QuickReplyOption-Object)[] |  | options |
+  | `OtherResponseToActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
+  
+
+### QuickReplyOption Object
+
+  QuickReplyOption is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Default | Description |    
-  | - | - | - | - |  
-  | `responses`| [ChatbotResponse](#Chatbot-Response-Object)[] |  | an array of [ChatbotResponse](#Chatbot-Response-Object) object. |
-  | `intentId` | Guid  | | id of the matched intent |
-  | `intentName` | string  |  | name of the matched intent |
-  | `score` | float  |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
-
-### PossibleAnswer Object
-
-  PossibleAnswer is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Default | Description |    
   | - | - | - | - | 
-  | `message` | string | | Text of the Possible Answer message | 
-  | `audio` | string |  | base64 string, convert the message text to speech |  
-  | `intents` | [IntentScore](#IntentScore-object)[]  || an array of [IntentScore](#IntentScore-object)   | 
-  | `messageAfterSeveralConsecutivePossibleAnswers` | [MessageAfterSeveralConsecutivePossibleAnswers](#MessageAfterSeveralConsecutivePossibleAnswers-object)  || | 
+  | `Text` | strubg |  |   String (256). |  
+  | `NextActionId` | guid | |  |
+  | `Order` | int | | Order Number|
+  
 
 
-### MessageAfterSeveralConsecutivePossibleAnswers Object
+### SendImage Object
 
-  MessageAfterSeveralConsecutivePossibleAnswers is represented as simple flat JSON objects with the following keys:  
+  SendImage is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type |  Default | Description |    
   | - | - | - | - | 
-  |`message` | string |  | text of the message  |
-  |`audio` | string |  | base64 string, convert the message text to speech | 
-  | `ifIncludeContactAgentOption` | bool  |  |  |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `imageUrl` | string | | url  |
+  | `NextActionId` | guid | | NextActionId |
 
-### IntentScore Object
+###  SendVideo Object
 
-  IntentScore is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type |  Default | Description |    
-  | - | - | - | - | 
-  |`id` | Guid || id of the intent  | 
-  |`name` | string | | name of the intent |  
-  | `score` | float  |  | the score of the intent matched, value is between 0.0 and 100.0 |
-
-### NoAnswer Object
-
-  NoAnswer is represented as simple flat JSON objects with the following keys:  
+  SendVideo is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type |  Default | Description |    
   | - | - | - | - | 
-  |`message` | string |  | text of the No Answer message  |
-  |`audio` | string |  | base64 string, convert the message text to speech | 
-  | `intentId` | Guid  |  | id of the matched intent |
-  | `intentName` | string  |   | name of the matched intent |
-  | `score` | float  | | the score of the intent matched, the value is beteween 0.0 and 100.0 |  
-  | `ifIncludeContactAgentOption` | bool  |  |  |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `videoUrl` | string | | url  |
+  | `NextActionId` | guid | | NextActionId |
+
+###  SSOLoginButton Object
+
+   SSOLoginButton is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type |  Default | Description |    
+  | - | - | - | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `loginButtonText` | string | |   loginButtonText|
+  | `loginInActionId` | guid | |  loginInActionId |
+  | `failedActionId` | guid | |  failedActionId |
 
 
-### AuthenticationRequest Object
+###  CollectLocation Object
 
-  AuthenticationRequest is represented as simple flat JSON objects with the following keys:  
+   CollectLocation is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type  | Default | Description |    
   | - | - | :-: | - | 
-  | `signInMessage` | string  |  | message of the sign in |
-  | `audio` | string |  | base64 string, convert the signInMessage text to speech |   
-  | `signInButtonText` | string  |  | text of the sign in link |
-  | `signInURL` | string  |  | url of the sign in |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string | | HTML Text.  |
+  | `buttonText` | string  |  | text of the location button |
+  | `successActionId` | guid | |  successActionId |
+  | `failedActionId` | guid | |  failedActionId |
 
 
-### LocationRequest Object
+###  CollectInfo Object
 
-  LocationRequest is represented as simple flat JSON objects with the following keys:  
+   CollectInfo is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type  | Default | Description |    
   | - | - | :-: | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
   | `message` | string  |  | message of the sign in |
-  | `buttonText` | string  |  | text of the sign in link |
+  | `type` | string  |  | enums:`name`, `email`, `phoneNumber`, `companyName`, `comment`|
+  | `nextActionId` | guid | | NextActionId |
 
 
-### Prompt Object
+###  CollectVariableData Object
 
-  Prompt is represented as simple flat JSON objects with the following keys:  
+   CollectVariableData is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Default | Description |    
   | - | - | :-: | - | 
-  |`question` | string | | |
-  | `audio` | string |  | base64 string, convert the signInMessage text to speech |   
-  |`options` | string[] |  | an array of string |
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string  |  | message of the sign in |
+  | `variableName` | string  |  | variableName |
+  | `type` | string  |  | enums:`text`, `textArea`, `radioBox`, `switch`, `dropDownList`, `checkBoxList`, `email`, `password`, `integer`, `decimal`, `date`, `time`|
+  | `options` | string  |  | variableName |
+  | `nextActionId` | guid | | nextActionId |
 
 
-### FormRequest Object
-FormRequest is represented as simple flat json objects with the following keys:
-
-|Name| Type| Default | Description     | 
-| - | - | :-: | - | 
-|`message` | string |   | A separate message which is sent before the button is sent.|
-|`title` | string |  | when a button is sent to visitor, clicking this button will open a form that contains information bot wants to collect from the visitor. the title refers to the title of that form, and it is also placed on the button as a name.|
-|`isConfirmationRequired` | bool |   | whether visitor needs to click confirm after filling out the information in a form.|
-|`fields` | [Field](#field-object)[] | | an array of [Field](#field-object) Object |
-|`submitButtonText` | string |   | |
-|`cancelButtonText` | string |   | |
-|`confirmButtonText` | string |   | |
-
-
-### Field Object
-Field is represented as simple flat json objects with the following keys:
+###  BookMeeting Object
+ BookMeeting is represented as simple flat json objects with the following keys:
 
 |Name| Type| Default | Description     | 
 | - | - | :-: | - | 
-|`type` | string | | enums: `text` ,`textArea`,`radioBox` ,`checkBox` ,`dropDownList` ,`checkBoxList`,`email` type refers to the different kinds of fields which can be used in a form. |
-|`name` | string |  | a field’s name in a form. |
-|`defaultValue` | string | | a field’s value |
-|`isRequired` | bool |  | to mark whether a field in a form is required or not. |
-|`isMasked` | bool |  | if this is true, visitor information will be masked with symbols in chat logs. |
-|`options` | string[] |  | an array of of string when the fieldType is `radioBox` ,`dropDownList` ,`checkBoxList`|
-|`order` | integer |  | must greater than or equal 0, ascending sort |
-
-### NotHelpfulMessage Object
-NotHelpfulMessage is represented as simple flat json objects with the following keys:
-
-|Name| Type| Default | Description     | 
-| - | - | :-: | - | 
-|`message` | string |  | text of the message  | 
-|`ifIncludeContactAgentOption` | bool |  | include Contact An Agent or not . |  
+| `calendlyAccountId` | guid  |  | Calendly Account. |
+| `calendlyEventUrl` | string  |  | calendlyEventUrl |
+| `successActionId` | guid  |  | Taskbot Action Id |
+| `failedActionId` | guid  |  | Taskbot Action Id |
+| `nextActionId` | guid | | NextActionId |
 
 
-### Chatbot Response Object
-  Response is represented as simple flat json objects with the following keys:
-
-  |Name| Type| Default | Description     | 
-  | - | - | :-: | - | 
-  |`type` | string | | enums: `text` ,`htmlText` ,`button`,`quickReply` ,`image` ,`video` ,`ivrMenu` ,`transferCall` . |
-  | `content` | object | | response's content. when type is `text` or `htmlText`, it represents [Text Response](#Text-Response-Object); when type is `image` ,it represents [ImageResponse](#ImageResponse-Object);when type is `video`, the content is the video url, it represents string; when type is `button`,it represents [ButtonResponse](#buttonresponse-object);when type is `quickReply`, it represents [QuickReplyResponse](#QuickReplyResponse); when type is `ivrMenu`, it represents [IVRMenu Response](#IVRMenu-Response-Object);when type is `transferCall`, it represents [TransferCall Response](#TransferCall-Response-Object); |
-  |`disableChatInputArea` | bool | false | Only available when channel is  `Live Chat`. |
-  |`delayTime` | decimal | 1 | how many seconds delay to show  |
-
-#### Text Response Object
-  Text Response is represented as simple flat json objects with the following keys:
-
-  |Name| Type| Default | Description     | 
-  | - | - | :-: | - | 
-  |`text` | string |  | string  |
-  |`audio` | string | | base64 string, convert the text to speech |
-
-### ImageResponse Object
-  Image is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type |  Default | Description |    
-  | - | - | :-: | - | 
-  | `name` | string  |  | name of the image |
-  | `url` | string  | | url of the image | 
-
-
-#### ButtonResponse Object
-ButtonResponse is represented as simple flat json objects with the following keys:
-
-|Name| Type|  Default | Description   |   
-| - | - | :-: | - | 
-|`message` | string |  |text above buttons,this text will be sent before buttons.  | 
-|`buttons` | [Button](#button-Object)[] | |an array of [Button](#button-Object).  | 
-
-#### Button Object
-Button is represented as simple flat json objects with the following keys:
+###  TransferChat Object
+ TransferChat is represented as simple flat json objects with the following keys:
 
 |Name| Type| Default | Description     | 
 | - | - | :-: | - | 
-|`buttonText` | string |  |text on button.  | 
-|`type` | string |  |enums contain `triggerAnIntent`,`link` and `webView`,type of buttons  | 
-|`linkUrl` | string |  |url of the web page you want to open.  | 
-|`intentId` | Guid |  | id of the intent you choosed.  | 
-|`openIn` | string |  |enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
-|`openStyle` | string | |enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
+| `calendlyAccountId` | guid  |  | Calendly Account. |
+| `calendlyEventUrl` | string  |  | calendlyEventUrl |
+| `successActionId` | guid  |  | Taskbot Action Id |
+| `failedActionId` | guid  |  | Taskbot Action Id |
+| `nextActionId` | guid | | NextActionId |
 
-#### QuickReplyResponse
-QuickReplyResponse is represented as simple flat json objects with the following keys:
-
-|Name| Type| Default | Description     | 
-| - | - | :-: | - | 
-|`message` | string | |text sent before quickreplys.  |  
-|`quickReplyItems` | [QuickReplyItem](#QuickReplyItem-object)[]  | |an array of [QuickReplyItem](#QuickReplyItem-Object).  | 
-
-#### QuickReplyItem Object
-|Name| Type   |Default | Description     | 
-| - | - | :-: | - | 
-|`type` | string |  |enum values, `triggerAnIntent`,`contactAnAgent`  | 
-|`text` | string |  |text of quickreply item .  | 
-|`intentId` | Guid |  |  Only available when type is  `triggerAnIntent`.  | 
-
-
-#### IVRMenu Response Object
-  IVRMenu Response is represented as simple flat json objects with the following keys:
-
-  |Name| Type|  Default | Description     | 
-  | - | - | :-: | - | 
-  |`message` | string |  | The message sent to visitor before the options.This message will be transferred to IVR and read to visitor  |
-  |`audio` | string |  | base64 string, convert the message text to speech  |  
-  |`invalidInputActionRepeatTime` | integer |  | How many times will this IVR Menu repeat if there is invalid input   | 
-  | `keys` | [IVRMenuKey](#IVRMenuKey-object)[]  |  | The valid keys for visitor to choose options. the key contains: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0`, `*`, `#`. Each key can only be used once in an IVR menu. Visitor can press the key to choose the option.  |
-
-
-#### IVRMenuKey Object
-|Name| Type   |Default | Description     | 
-| - | - | :-: | - | 
-|`key` | string |  | The valid keys for visitor to choose options. the key contains: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0`, `*`, `#`. Each key can only be used once in an IVR menu. Visitor can press the key to choose the option.  | 
-|`text` | string |  |text of quickreply item .  | 
-|`intentId` | Guid |  |    | 
-
-
-#### TransferCall Response Object
-  TransferCall Response is represented as simple flat json objects with the following keys:
-
-  |Name| Type| Default | Description     | 
-  | - | - | :-: | - | 
-  |`targetNumber` | string |  | phone number. |
 
 ## Endpoints
 
@@ -1287,70 +1195,3 @@ Content-Type:  application/json
   }
 ]
 ```
-reate session](#create-session)
-  - `POST /api/v3/bot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitIVRKey` - [Submit IVRKey](#Submit-IVRKey)
-  - `POST /api/v3/bot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
-
-## Related Object Json Format
-
-### ChatbotSession Object
-  ChatbotSession Object is represented as simple flat JSON objects with the following keys:  
-
-  |Name| Type | Default | Description     | 
-  | - | - | :-: | - | 
-  | `id` | Guid  | | sessionId |
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `message` |  [ChatbotMessage](#ChatbotMessage-Object) Object |  |  |
-  | `context` | [ChatbotSessionContext](#ChatbotSessionContext-Object) Object  |   |  |
-
-### ChatbotSessionContext Object
-  ChatbotSessionContext Object is represented as simple flat JSON objects with the following keys:  
-
-  |Name| Type | Default | Description     | 
-  | - | - | :-: | - |   
-  | `chatbotId` | Guid  | | chatbotId |
-  | `currentIntentId` | Guid  | |  |
-  | `authentication` | string  | | authentication data |
-  | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
-  | `formValues` | [FieldValue](#FieldValue-object)[] |  | an array of [FieldValue](#FieldValue-object) objects |
-  | `isFormSubmitted` | bool  | false |  |
-  | `latestMessage` | [ChatbotMessage](#ChatbotMessage-Object) Object  | |  |
-  | `customData` | Object  |   | Custom data |
-
-### FieldValue Object
-FieldValue is represented as simple flat json objects with the following keys:
-
-|Name| Type|  Default |  Description     |
-| - | - | :-: |  - | 
-|`name` | string |  | the name of a field in a form. |
-|`value` | string |  | the value of a field. |
-
-
-### ChatbotMessage Object
-  ChatbotMessage Object is represented as simple flat JSON objects with the following keys:  
-
-  |Name| Type| Default | Description     | 
-  | - | - | :-: | - | 
-  | `id` | Guid  |  | the unique id of the response |
-  | `visitorQuestion` | string  |  | text |
-  | `type` | string  |  | type of the response,including `greetingMessage`、 `highConfidenceAnswer`、`possibleAnswer`、`noAnswer`,`notHelpfulMessage`, `locationRequest`,`formRequest`,`authenticationRequest`,`prompt` |
-  | `content` | object |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer-object); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer-object);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer-object);when type is `greetingMessage`,it represents [GreetingMessage](#GreetingMessage-Object); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object);when type is `locationRequest`, it represents [LocationRequest](#LocationRequest-Object);when type is `formRequest`, it represents [FormRequest](#FormRequest-Object);when type is `prompt`, it represents [Prompt](#Prompt-Object);when type is `notHelpfulMessage`, it represents [NotHelpfulMessage](#NotHelpfulMessage-Object);|
-  | `disableChatInputArea` | bool  | false | Only available when channel is  `Live Chat`. |
-  | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
-
-
-###  Smart Trigger Action Object
-  Smart Trigger Action is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Default | Description |
-  | - | - | :-: | - |
-  | `type` | string |  | the type of the action. enum:[`sendNotification`,`autoMonitor`,`transferChat`,`changeAssignee`,`addToSegment`]|
-  | `isEnabled` | bool | false | if an action is enabled. |  
-  | `agentOfflineMessage` | string | | agent offlineMessage prompt message |
-  | `targetType` | string |  | the trigger action target type. enum: `department`, `agent`, `segment`. |
-  | `selectedDepartments` | Guid[] |  | Only available when 
