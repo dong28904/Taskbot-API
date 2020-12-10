@@ -11,7 +11,7 @@
 # Session
   - `POST /api/v1/bot/taskbot/{taskbotId}/start` - [Start session](#start-session)
   - `POST /api/v1/bot/taskbot/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
-  - `POST /api/v1/bot/taskbot/{sessionId}:endSession` - [End Session](#end-session)
+  - `POST /api/v1/bot/taskbot/{sessionId}:end` - [End Session](#end-session)
 
 ## Related Object Json Format
 
