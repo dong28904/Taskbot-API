@@ -10,7 +10,7 @@
 
 # Session
   - `POST /api/v1/bot/taskbot/{taskbotId}/start` - [Start session](#start-session)
-  - `POST /api/v1/bot/taskbot/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
+  - `POST /api/v1/bot/taskbot/{sessionId}:trigger` - [Trigger Session](#trigger-session)
   - `POST /api/v1/bot/taskbot/{sessionId}:end` - [End Session](#end-session)
 
 ## Related Object Json Format
@@ -273,7 +273,7 @@ Response
 
 
 ### Trigger Session
-`POST /api/v1/bot/taskbot/{sessionId}:triggerSession`
+`POST /api/v1/bot/taskbot/{sessionId}:trigger`
 
 #### Parameters
 Path parameters
