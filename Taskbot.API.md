@@ -51,6 +51,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   |Name| Type| Default | Description     | 
   | - | - | :-: | - | 
   | `id` | Guid  |  | the unique id of the response |
+  | `path` | string  |  | pre response path |
   | `type` | string  |  | type of the response,including `sendMessage`,`quickReply`、 `sendImage`、`sendVideo`、`ssoLoginButton`,`collectLocation`, `collectInfo`,`collectVariableData`,`bookMeeting`,`transferChat` |
   | `content` | object |  | response's content. when type is `sendMessage`, it represents [SendMessage](#SendMessage-object); when type is `quickReply`,it represents [QuickReply](#QuickReply-object);when type is `sendImage`,it represents [SendImage](#SendImage-object);when type is `sendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `ssoLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `collectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `collectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `collectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `bookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `transferChat`, it represents [TransferChat](#TransferChat-Object);|
 
