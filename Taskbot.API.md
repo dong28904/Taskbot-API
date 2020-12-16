@@ -33,7 +33,7 @@
   | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
-  | `variableValues` | [NameValueCollection](#NameValue-object)[] |  | an array of [NameValue](#NameValue-object) objects |
+  | `variables` | [NameValueCollection](#NameValue-object)[] |  | an array of [NameValue](#NameValue-object) objects |
   | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object)   | | record path and save collected info  |
 
 ### NameValueCollection Object
@@ -291,8 +291,8 @@ The request body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `authentication` | string | no  |  Authentication Token |
   | `location` | string | no  |  location |
-  | `collectName` | string | no  |  collectName such as 'name','email','phoneNumber','age'....|
-  | `collectValue` | string | no  |  collectValue |
+  | `variableName` | string | no  |  variableName such as 'name','email','phoneNumber','age'....|
+  | `variableValue` | string | no  |  variableValue |
   | `inputText` | string | no  |  user input  |
   | `context` | [TaskbotContext](#TaskbotContext-Object) Object  | yes  |  |context|
 
