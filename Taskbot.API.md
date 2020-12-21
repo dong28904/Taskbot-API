@@ -204,7 +204,7 @@ FieldValue is represented as simple flat json objects with the following keys:
 ## Endpoints
 
 ### Create session
-  - `POST /taskbots/{taskbotId}/sessions`
+  - `POST /v1/taskbot/taskbots/{taskbotId}/sessions`
 
 #### Parameters
 Path parameters
@@ -272,8 +272,8 @@ Response
 ```
 
 
-### Trigger Session
-`POST /sessions/{sessionId}:triggerSession`
+### Trigger Action
+`POST /v1/taskbot/sessions/{sessionId}:triggerAction`
 
 #### Parameters
 Path parameters
@@ -339,7 +339,7 @@ Response
 
 
 ### End Session
-`POST /sessions/{sessionId}:endSession`
+`POST /v1/taskbot/sessions/{sessionId}:endSession`
 
 #### Parameters
 Path parameters
