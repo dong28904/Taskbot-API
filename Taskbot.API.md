@@ -9,9 +9,9 @@
 
 
 # Session
-  - `POST /api/v1/bot/taskbot/{taskbotId}/start` - [Start session](#start-session)
-  - `POST /api/v1/bot/taskbot/{sessionId}:trigger` - [Trigger Session](#trigger-session)
-  - `POST /api/v1/bot/taskbot/{sessionId}:end` - [End Session](#end-session)
+  - `POST /taskbots/{taskbotId}/sessions` - [Create session](#create-session)
+  - `POST /sessions/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
+  - `POST /sessions/{sessionId}:endSession` - [End Session](#end-session)
 
 ## Related Object Json Format
 
@@ -203,8 +203,8 @@ FieldValue is represented as simple flat json objects with the following keys:
 
 ## Endpoints
 
-### Start session
-  - `POST /api/v1/bot/taskbot/{taskbotId}/start`
+### Create session
+  - `POST /taskbots/{taskbotId}/sessions`
 
 #### Parameters
 Path parameters
@@ -273,7 +273,7 @@ Response
 
 
 ### Trigger Session
-`POST /api/v1/bot/taskbot/{sessionId}:trigger`
+`POST /sessions/{sessionId}:triggerSession`
 
 #### Parameters
 Path parameters
@@ -339,7 +339,7 @@ Response
 
 
 ### End Session
-`POST /api/v1/bot/taskbot/{sessionId}:endSession`
+`POST /sessions/{sessionId}:endSession`
 
 #### Parameters
 Path parameters
