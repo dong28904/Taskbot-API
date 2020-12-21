@@ -9,9 +9,9 @@
 
 
 # Session
-  - `POST /taskbots/{taskbotId}/sessions` - [Create session](#create-session)
-  - `POST /sessions/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
-  - `POST /sessions/{sessionId}:endSession` - [End Session](#end-session)
+  - `POST /v1/taskbot/taskbots/{taskbotId}/sessions` - [Create session](#create-session)
+  - `POST /v1/taskbot/sessions/{sessionId}:triggerSession` - [Trigger Session](#trigger-session)
+  - `POST /v1/taskbot/sessions/{sessionId}:endSession` - [End Session](#end-session)
 
 ## Related Object Json Format
 
