@@ -33,7 +33,7 @@
   | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
-  | `variables` | [NameValueCollection](#NameValue-object)[] |  | an array of [NameValue](#NameValue-object) objects |
+  | `variables` | [NameValueCollection](#NameValue-object) |  | an array of [NameValue](#NameValue-object) objects |
   | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object)   | | record path and save collected info  |
 
 ### NameValueCollection Object
