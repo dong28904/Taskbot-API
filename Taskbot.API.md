@@ -217,7 +217,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `sessionId` | string  | yes | |id of the session |
+  | `sessionId` | Guid  | yes | |id of the session |
   | `triggerType` | string | yes | | enums:`preChat`, `agent`, `chatbot`, `taskbot`|
   | `triggerBy` | guid | yes  || agentId or chatbotId or taskbotId |
   | `context` | [TaskbotContext](#TaskbotContext-Object) Object  | yes  |  |context|
