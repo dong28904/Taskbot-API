@@ -190,15 +190,13 @@ FieldValue is represented as simple flat json objects with the following keys:
 
 
 ###  TransferChat Object
- TransferChat is represented as simple flat json objects with the following keys:
+   TransferChat is represented as simple flat JSON objects with the following keys:
 
-|Name| Type| Default | Description     | 
-| - | - | :-: | - | 
-| `calendlyAccountId` | guid  |  | Calendly Account. |
-| `calendlyEventUrl` | string  |  | calendlyEventUrl |
-| `successActionId` | guid  |  | Taskbot Action Id |
-| `failedActionId` | guid  |  | Taskbot Action Id |
-| `nextActionId` | guid | | NextActionId |
+  | Name | Type | Default | Description |
+  | - | - | - | - |
+  | `transferType` | string | | Transfer to Agent, Transfer to Department, Transfer to Chatbot, Transfer According to Routing Rules.  |
+  | `transferTo` | string | | Agent, Department, Chatbot. Only available when Type is Transfer to Agent, Transfer to Department, Transfer to Chatbot.  |
+  | `AgentOfflineActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
 
 
 ## Endpoints
