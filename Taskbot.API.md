@@ -287,6 +287,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
+  | `nextAtionId` | Guid | yes  |   nextAtionId|
   | `authentication` | string | no  |  Authentication Token |
   | `location` | string | no  |  location |
   | `variableName` | string | no  |  variableName such as 'name','email','phoneNumber','age'....|
