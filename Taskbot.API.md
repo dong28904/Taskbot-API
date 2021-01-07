@@ -52,8 +52,8 @@ FieldValue is represented as simple flat json objects with the following keys:
   | - | - | :-: | - | 
   | `id` | Guid  |  | the unique id of the response |
   | `path` | string  |  | pre response path,like '1.2.3.1.2' |
-  | `type` | string  |  | type of the response,including `sendMessage`,`quickReply`、 `sendImage`、`sendVideo`、`ssoLoginButton`,`collectLocation`, `collectInfo`,`collectVariableData`,`bookMeeting`,`transferChat` |
-  | `content` | object |  | response's content. when type is `sendMessage`, it represents [SendMessage](#SendMessage-object); when type is `quickReply`,it represents [QuickReply](#QuickReply-object);when type is `sendImage`,it represents [SendImage](#SendImage-object);when type is `sendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `ssoLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `collectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `collectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `collectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `bookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `transferChat`, it represents [TransferChat](#TransferChat-Object);|
+  | `type` | string  |  | type of the response,including `sendMessage`,`quickReply`、 `sendImage`、`sendVideo`、`ssoLoginButton`,`collectLocation`, `collectInfo`,`collectVariableData`,`bookMeeting`,`transferChat`,`gotoTaskbot` |
+  | `content` | object |  | response's content. when type is `sendMessage`, it represents [SendMessage](#SendMessage-object); when type is `quickReply`,it represents [QuickReply](#QuickReply-object);when type is `sendImage`,it represents [SendImage](#SendImage-object);when type is `sendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `ssoLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `collectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `collectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `collectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `bookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `transferChat`, it represents [TransferChat](#TransferChat-Object);when type is `gotoTaskbot`, it represents [GotoTaskbot](#GotoTaskbot-Object);|
 
 
 ###  SendMessage Object
@@ -197,6 +197,13 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `transferType` | string | |enums:`transferToAgent`, `transferToDepartment`, `transferToChatbot`, `transferRouting Rules`.  |
   | `transferTo` | string | | Agent, Department, Chatbot. Only available when Type is Transfer to Agent, Transfer to Department, Transfer to Chatbot.  |
   | `AgentOfflineActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
+  
+###  GotoTaskbot Object
+   GotoTaskbot is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Default | Description |
+  | - | - | - | - |
+  | `taskbotId` | guid | | go to other taskbot|
 
 
 ## Endpoints
