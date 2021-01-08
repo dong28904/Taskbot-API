@@ -197,7 +197,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | Name | Type | Default | Description |
   | - | - | - | - |
   | `transferType` | string | |enums:`transferToAgent`, `transferToDepartment`, `transferToChatbot`, `transferRouting Rules`.  |
-  | `transferTo` | string | | Agent, Department, Chatbot. Only available when Type is Transfer to Agent, Transfer to Department, Transfer to Chatbot.  |
+  | `transferTo` | guid | | Agent, Department, Chatbot. Only available when Type is Transfer to Agent, Transfer to Department, Transfer to Chatbot.  |
   | `agentOfflineActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
   
 ###  GotoTaskbot Object
