@@ -97,9 +97,9 @@ FieldValue is represented as simple flat json objects with the following keys:
 
   | Name | Type | Default | Description |    
   | - | - | - | - | 
-  | `Text` | strubg |  |   String (256). |  
-  | `NextActionId` | guid | |  |
-  | `Order` | int | | Order Number|
+  | `text` | strubg |  |   String (256). |  
+  | `nextActionId` | guid | |  |
+  | `order` | int | | Order Number|
   
 
 
@@ -112,7 +112,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
   | `message` | string | | HTML Text.  |
   | `imageUrl` | string | | url  |
-  | `NextActionId` | guid | | NextActionId |
+  | `nextActionId` | guid | | NextActionId |
 
 ###  SendVideo Object
 
@@ -123,7 +123,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
   | `message` | string | | HTML Text.  |
   | `videoUrl` | string | | url  |
-  | `NextActionId` | guid | | NextActionId |
+  | `nextActionId` | guid | | NextActionId |
 
 ###  SSOLoginButton Object
 
@@ -196,7 +196,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | - | - | - | - |
   | `transferType` | string | |enums:`transferToAgent`, `transferToDepartment`, `transferToChatbot`, `transferRouting Rules`.  |
   | `transferTo` | string | | Agent, Department, Chatbot. Only available when Type is Transfer to Agent, Transfer to Department, Transfer to Chatbot.  |
-  | `AgentOfflineActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
+  | `agentOfflineActionId` | guid | | Task Bot Action. The action to go to when visitor replies with any other message |
   
 ###  GotoTaskbot Object
    GotoTaskbot is represented as simple flat JSON objects with the following keys:
