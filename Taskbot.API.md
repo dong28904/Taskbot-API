@@ -32,6 +32,7 @@
   | `sessionId` | Guid  | | sessionId |
   | `taskbotId` | Guid  | | taskbotId |
   | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
+  | `TaskbotTriggerRecordId` | Guid  | | triggerRecordId  |
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
   | `variables` | [NameValueCollection](#NameValue-object) |  | an array of [NameValue](#NameValue-object) objects |
