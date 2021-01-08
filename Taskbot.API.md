@@ -29,6 +29,7 @@
 
   |Name| Type | Default | Description     | 
   | - | - | :-: | - |   
+  | `sessionId` | Guid  | | sessionId |
   | `taskbotId` | Guid  | | taskbotId |
   | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
   | `authentication` | string  | | authentication data |
