@@ -377,10 +377,3 @@ example:
 
 #### Response
 
-The response body contains data with the follow structure:
-
-  | Name | Type | Required | Default | Description |    
-  | - | - | :-: | :-: | - | 
-  | `isSuccess` | bool | yes || |
-  | `message` | string | yes || message|
-
