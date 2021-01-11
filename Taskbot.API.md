@@ -364,6 +364,8 @@ The request body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `endType` | string | yes ||  enums:`stopByAgent`, `chatEnd`|
+  | `taskbotId` | Guid | yes  |  id of the taskbot |
+  | `context` | [TaskbotContext](#TaskbotContext-Object) Object  | yes  |  |context|
 
 example:
 ```Json 
