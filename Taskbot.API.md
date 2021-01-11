@@ -31,6 +31,7 @@
   | - | - | :-: | - |   
   | `sessionId` | Guid  | | sessionId |
   | `taskbotId` | Guid  | | taskbotId |
+  | `ticketId` | Guid  | | ticketId |
   | `taskbotVersionId` | Guid  | | current session versionId of taskbot  |
   | `TaskbotTriggerRecordId` | Guid  | | triggerRecordId  |
   | `authentication` | string  | | authentication data |
