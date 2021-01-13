@@ -55,8 +55,9 @@ FieldValue is represented as simple flat json objects with the following keys:
   | - | - | :-: | - | 
   | `id` | Guid  |  | the unique id of the response |
   | `path` | string  |  | pre response path,like '1.2.3.1.2' |
-  | `type` | string  |  | type of the response,including `taskbotSendMessage`,`taskbotQuickReply`、 `taskbotSendImage`、`taskbotSendVideo`、`taskbotSSOLoginButton`,`taskbotCollectLocation`, `taskbotCollectInfo`,`taskbotCollectVariableData`,`taskbotBookMeeting`,`taskbotTransferChat`,`taskbotGotoTaskbot` |
-  | `content` | object |  | response's content. when type is `taskbotSendMessage`, it represents [SendMessage](#SendMessage-object); when type is `taskbotQuickReply`,it represents [QuickReply](#QuickReply-object);when type is `taskbotSendImage`,it represents [SendImage](#SendImage-object);when type is `taskbotSendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `taskbotSSOLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `taskbotCollectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `taskbotCollectInfo`, it represents [CollectInfo](#CollectInfo-Object);when type is `taskbotCollectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `taskbotBookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `taskbotTransferChat`, it represents [TransferChat](#TransferChat-Object);when type is `taskbotGotoTaskbot`,  it represents [GotoTaskbot](#GotoTaskbot-Object);|
+  | `messages` | dictionary<string,object>  |  | key ：'type'  value : 'content' |
+  | `type` | string  |  | type of the response,including `taskbotSendMessage`,`taskbotQuickReply`、 `taskbotSendImage`、`taskbotSendVideo`、`taskbotSSOLoginButton`,`taskbotCollectLocation`, `taskbotCollectCompany`, `taskbotCollectEmail`, `taskbotCollectName`, `taskbotCollectPhoneNumber`, `taskbotCollectComment`,`taskbotCollectVariableData`,`taskbotBookMeeting`,`taskbotTransferChat`,`taskbotGotoTaskbot` |
+  | `content` | object |  | response's content. when type is `taskbotSendMessage`, it represents [SendMessage](#SendMessage-object); when type is `taskbotQuickReply`,it represents [QuickReply](#QuickReply-object);when type is `taskbotSendImage`,it represents [SendImage](#SendImage-object);when type is `taskbotSendVideo`,it represents [SendVideo](#SendVideo-Object); when type is `taskbotSSOLoginButton`, it represents [SSOLoginButton](#SSOLoginButton-Object);when type is `taskbotCollectLocation`, it represents [CollectLocation](#CollectLocation-Object);when type is `taskbotCollectCompany`, it represents [CollectCompany](#CollectCompany-Object);when type is `taskbotCollectEmail`, it represents [CollectEmail](#CollectEmail-Object);when type is `taskbotCollectName`, it represents [CollectName](#CollectName-Object);when type is `taskbotCollectPhoneNumber`, it represents [CollectPhoneNumber](#CollectPhoneNumber-Object);when type is `taskbotCollectComment`, it represents [CollectComment](#CollectComment-Object);when type is `taskbotCollectVariableData`, it represents [CollectVariableData](#CollectVariableData-Object);when type is `taskbotBookMeeting`, it represents [BookMeeting](#BookMeeting-Object);when type is `taskbotTransferChat`, it represents [TransferChat](#TransferChat-Object);when type is `taskbotGotoTaskbot`,  it represents [GotoTaskbot](#GotoTaskbot-Object);|
 
 
 ###  SendMessage Object
@@ -154,18 +155,61 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `failedActionId` | guid | |  failedActionId |
 
 
-###  CollectInfo Object
+###  CollectCompany Object
 
-   CollectInfo is represented as simple flat JSON objects with the following keys:  
+   CollectCompany is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type  | Default | Description |    
   | - | - | :-: | - | 
   | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
   | `message` | string  |  | message of the sign in |
-  | `type` | string  |  | enums:`name`, `email`, `phoneNumber`, `companyName`, `comment`|
+  | `nextActionId` | guid | | NextActionId |
+  
+  
+###  CollectEmail Object
+
+   CollectEmail is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type  | Default | Description |    
+  | - | - | :-: | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string  |  | message of the sign in |
   | `nextActionId` | guid | | NextActionId |
 
 
+###  CollectName Object
+
+   CollectName is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type  | Default | Description |    
+  | - | - | :-: | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string  |  | message of the sign in |
+  | `nextActionId` | guid | | NextActionId |
+  
+  
+###  CollectPhoneNumber Object
+
+   CollectPhoneNumber is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type  | Default | Description |    
+  | - | - | :-: | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string  |  | message of the sign in |
+  | `nextActionId` | guid | | NextActionId |
+  
+  
+ ###  CollectComment Object
+
+   CollectComment is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type  | Default | Description |    
+  | - | - | :-: | - | 
+  | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
+  | `message` | string  |  | message of the sign in |
+  | `nextActionId` | guid | | NextActionId |
+  
+  
 ###  CollectVariableData Object
 
    CollectVariableData is represented as simple flat JSON objects with the following keys:  
