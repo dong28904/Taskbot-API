@@ -54,7 +54,8 @@ FieldValue is represented as simple flat json objects with the following keys:
   |Name| Type| Default | Description     | 
   | - | - | :-: | - | 
   | `id` | Guid  |  | the unique id of the response |
-  | `path` | string  |  | pre response path,like '1.2.3.1.2' |
+  | `latestNextActionIds` | Guid[]  |  | record latest message can locate next action 
+  | `latestpath` | string  |  | pre response path,like '1.2.3.1.2' |
   | `messages` | dictionary<string,object>  |  | key ：'type'  value : 'content' |
   
   messages Object is represented as simple flat JSON objects with the following keys: 
