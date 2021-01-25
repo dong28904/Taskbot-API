@@ -56,9 +56,9 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `id` | Guid  |  | the unique id of the response |
   | `latestNextActionIds` | Guid[]  |  | record latest message can locate next action 
   | `latestpath` | string  |  | pre response path,like '1.2.3.1.2' |
-  | `messages` | dictionary<string,object>  |  | key ：'type'  value : 'content' |
+  | `messages` | List<MessageData>  |  | key ：'type'  value : 'content' |
   
-  messages Object is represented as simple flat JSON objects with the following keys: 
+  MessageData Object is represented as simple flat JSON objects with the following keys: 
   |Name| Type| Default | Description     | 
   | - | - | :-: | - | 
   | `type` | string  |  | type of the response,including `taskbotSendMessage`,`taskbotQuickReply`、 `taskbotSendImage`、`taskbotSendVideo`、`taskbotSSOLoginButton`,`taskbotCollectLocation`, `taskbotCollectCompany`, `taskbotCollectEmail`, `taskbotCollectName`, `taskbotCollectPhoneNumber`, `taskbotCollectComment`,`taskbotCollectVariableData`,`taskbotBookMeeting`,`taskbotTransferChat`,`taskbotGotoTaskbot` |
