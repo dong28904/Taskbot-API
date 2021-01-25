@@ -56,7 +56,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `id` | Guid  |  | the unique id of the response |
   | `latestNextActionIds` | Guid[]  |  | record latest message can locate next action 
   | `latestpath` | string  |  | pre response path,like '1.2.3.1.2' |
-  | `messages` | List<MessageData>  |  | key ：'type'  value : 'content' |
+  | `messages` | List<MessageData>  |  | MessageData  |
   
   MessageData Object is represented as simple flat JSON objects with the following keys: 
   |Name| Type| Default | Description     | 
