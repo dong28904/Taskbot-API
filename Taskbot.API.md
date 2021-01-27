@@ -347,7 +347,7 @@ The request body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `authentication` | string | no  |  Authentication Token |
   | `location` | string | no  |  location |
-  | `inputText` | string | no  |  user input  |
+  | `inputText` | string | no  |  user input or equal option. we should use this value to megex the best equal nextactionid and variable name |
   | `context` | [TaskbotContext](#TaskbotContext-Object) Object  | yes  |  |context|
 
 example:
