@@ -223,7 +223,7 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `typingDelay` | decimal |  |  float (0.0-10.0). Default: 1.0. The typing delay in seconds before this message is shown in chat window. Visitor can see bot is typing in chat window |  
   | `message` | string  |  | message of the sign in |
   | `variableName` | string  |  | variableName |
-  | `type` | string  |  | enums:`text`, `textArea`, `radioBox`, `switch`, `dropDownList`, `checkBoxList`, `email`, `password`, `integer`, `decimal`, `date`, `time`|
+  | `type` | string  |  | enums:`text`, `textArea`, `singleSelect`, `mutipleSelect`, `email`, `password`, `date`, `time`|
   | `options` | string  |  | variableName |
   | `nextActionId` | guid | | nextActionId |
 
