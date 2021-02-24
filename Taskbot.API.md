@@ -233,11 +233,10 @@ FieldValue is represented as simple flat json objects with the following keys:
 
 |Name| Type| Default | Description     | 
 | - | - | :-: | - | 
-| `calendlyAccountId` | guid  |  | Calendly Account. |
-| `calendlyEventUrl` | string  |  | calendlyEventUrl |
+| `IntegrationCalendlyId` | guid  |  | Calendly Account. |
+| `CalendlyEventTypeUri` | string  |  | calendlyEventUrl |
 | `successActionId` | guid  |  | Taskbot Action Id |
 | `failedActionId` | guid  |  | Taskbot Action Id |
-| `nextActionId` | guid | | NextActionId |
 
 
 ###  TransferChat Object
