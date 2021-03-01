@@ -234,7 +234,7 @@ FieldValue is represented as simple flat json objects with the following keys:
 |Name| Type| Default | Description     | 
 | - | - | :-: | - | 
 | `IntegrationCalendlyId` | guid  |  | Calendly Account. |
-| `CalendlyEventTypeUri` | string  |  | calendlyEventUrl |
+| `SchedulUrl` | string  |  | SchedulUrl |
 | `successActionId` | guid  |  | Taskbot Action Id |
 | `failedActionId` | guid  |  | Taskbot Action Id |
 
@@ -346,7 +346,7 @@ The request body contains data with the follow structure: if the node is bookmee
   | - | - | :-: | :-: | - | 
   | `authentication` | string | no  |  Authentication Token |
   | `location` | string | no  |  location |
-  | `inputText` | string | no  |  user input or equal option. we should use this value to megex the best equal nextactionid and variable name |
+  | `inputText` | string | no  |  user input or equal option. we should use this value to megex the best equal nextactionid and variable name, booking meeting eventuri;eventinviteerui |
   | `context` | [TaskbotContext](#TaskbotContext-Object) Object  | yes  |  |context|
 
 example:
