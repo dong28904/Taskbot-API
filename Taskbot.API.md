@@ -35,6 +35,8 @@
   | `TaskbotTriggerRecordId` | Guid  | | triggerRecordId  |
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
+  | `inputText` | string  | | inputText |
+  | `integrationCalendlyId` | Guid  | | integrationCalendlyId |
   | `variables` | [NameValueCollection](#NameValue-object) |  | an array of [NameValue](#NameValue-object) objects |
   | `latestMessage` | [TaskbotMessage](#TaskbotMessage-Object)   | | record path and save collected info  |
 
